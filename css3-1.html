@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3特殊效果</title>
+	<style type="text/css">
+	.sanjiaoxing{
+		height:0px;
+		width:0px;
+		display: inline-block;
+	}
+	.sanjiaoxing1{
+		border-top:50px solid transparent;
+		border-bottom:50px solid transparent;
+		border-left:80px solid red;
+		position: relative;
+
+
+	}
+	.sanjiaoxing1:before{
+		content:"";
+		top:-50px;
+		left:10px;
+		position: absolute;
+		border-top:50px solid transparent;
+		border-bottom:50px solid transparent;
+		border-left:80px solid red;
+
+	}
+	
+	.sanjiaoxing2{
+		margin-left: 100px;
+		border-top:50px solid transparent;
+		border-bottom:50px solid transparent;
+		border-right:80px solid blue;
+	}
+	.sanjiaoxing3{
+		border-left:50px solid transparent;
+		border-right:50px solid transparent;
+		border-bottom:80px solid green;
+	}
+	.sanjiaoxing4{
+		border-left:50px solid transparent;
+		border-right:50px solid transparent;
+		border-top:80px solid orange;
+		position: relative;
+	}
+	.sanjiaoxing4:after{
+		content:"";
+		position: absolute;
+		top:-80px;
+		left: 80px;
+		border-left:50px solid transparent;
+		border-right:50px solid transparent;
+		border-top:80px solid orange;
+
+	}
+	.tooltips{
+		padding:10px;
+		display: inline-block;
+		border:1px solid #808080;
+		position: relative;
+
+	}
+	.tooltips1:before{
+		content:"";
+		position: absolute;
+		top:100%;
+		left:50%;
+		border-left:5px solid transparent;
+		border-right:5px solid transparent;
+		border-bottom:8px solid rgba(0,0,0,0.3);
+		transform: translate(-50%,5px);
+	}
+	.tooltips1:after{
+		content:attr(data-tip);
+		position: absolute;
+		top:100%;
+		left:50%;
+		background-color: rgba(0,0,0,0.3);
+		white-space: nowrap;/*不要回行*/
+		padding:3px 20px;
+		transform: translate(-50%,13px);
+	}
+	.tooltips2:before{
+		content:"";
+		position: absolute;
+		top:0%;
+		left:100%;
+		border-top:5px solid transparent;
+		border-bottom:5px solid transparent;
+		border-right:8px solid rgba(0,0,0,0.3);
+		transform: translate(8px,15px);
+	}
+	.tooltips2:after{
+		content:attr(data-tip);
+		position: absolute;
+		top:0%;
+		left:100%;
+		white-space: nowrap;/*不要回行*/
+		background-color: rgba(0,0,0,0.3);
+		padding:3px 20px;
+		transform: translate(16px,7px);
+	}
+	.tooltips1:before,.tooltips1:after,.tooltips2:before,.tooltips2:after{
+		transition: all 0.5s;
+		opacity: 0;
+	}
+	.tooltips1:hover:before,.tooltips1:hover:after,.tooltips2:hover:before,.tooltips2:hover:after{
+		
+		opacity: 1;
+	}
+	.music{
+		background-color: #000;
+		width: 90%;
+		margin-top:50px;
+	}
+	.music-ul{
+		padding-bottom: 50px;
+	}
+	.music-ul li{
+		list-style-type:none;
+		color:#fff;
+		font-size: 30px;
+		text-shadow: 1px 1px 5px #f00;/*左右 上下 模糊  颜色*/
+		transition: all 0.5s;
+	}
+	.music-ul li:hover{
+		letter-spacing: 50px; /*字符间的空隙*/
+		text-shadow:  0 0 25px #0f0,
+					0 0 5px #fff,
+					0 0 10px #fff,
+					0 0 15px #ff9900,
+					0 0 20px #ff9900,
+					0 0 25px #ff9900,  
+					0 0 30px #ff9900;
+	}
+	.line{
+		width:0px;
+		height: 2px;
+		border-bottom:1px solid #fff;
+		transition: all 0.5s;
+	}
+	.music-ul li:hover .line{
+		width:500px;	
+	}
+	.taiji{
+		margin-top:30px;
+		height: 400px;
+		width: 400px;
+		background:linear-gradient(black 50% ,white 50%);
+		border:1px solid #000;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;/*垂直居中*/
+		animation: zhuan 50s infinite alternate linear;
+	}
+	.left,.right{
+		height: 50px;
+		width: 50px;
+		
+		border-radius: 50%;
+		
+	}
+	.right{
+		border:75px solid #000;
+		/*animation: bian 1s infinite alternate linear;/*infinite循环进行 alternate反复 linear匀速*/*/
+		animation-delay: -1s;/*延迟*/
+		transform-origin: 100% 50%;
+		background-color: #fff;
+	}
+	.left{
+		border:75px solid #fff;
+		/*animation: bian 1s infinite alternate linear;*/
+		transform-origin: 0% 50%;
+		background-color: #000;
+	}
+	/*自定义属性*/
+	@keyframes bian{
+		from{transform: scale(0.5);}
+		to{transform: scale(1.5);}
+
+	}
+	@keyframes zhuan{
+		from{transform: rotate(0deg);}
+		to{transform: rotate(3600deg);}
+	}
+	.sky{
+		margin-top:30px;
+		width:100%;
+		height:800px;
+		background-color: #89dfff;
+		position: relative;
+		overflow: hidden;
+
+	}
+	.caodi{
+		width: 100%;
+		bottom: 0;
+		height: 300px;
+		background-color: #f2d4ae;
+		position: absolute;
+	}
+	.cloud{
+		position: absolute;
+		top:150px;
+		left: 500px;
+		height: 40px;
+		width: 150px;
+		background-color: #fff;
+		border-radius: 20px;
+		
+	}
+	
+	.cloud-1{
+		position: absolute;
+		left: 20px;
+		top:-10px;
+		border-radius:50%;
+		height: 50px;
+		width: 50px;
+		background-color: #fff;
+	}
+	.cloud-2{
+		position: absolute;
+		left: 60px;
+		top:-30px;
+		border-radius:50%;
+		height: 60px;
+		width: 70px;
+		background-color: #fff;
+	}
+	.cloudA{
+		top:250px;
+		left: 150px;
+		transform: scale(0.8);
+		animation:cloud 10s infinite ease;/*ease缓动 先加速后减速*/
+	}
+	@keyframes cloud{
+		0%{transform: translateX(-20vw) scale(0.8);}
+		100%{transform: translateX(90vw) scale(0.8);}
+
+	}
+
+	.tiao{
+		background-color: #bbd149;
+		height: 500px;
+		width:50%;
+		margin:0;
+		height: 50vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		
+	}
+	.zhi{
+		position: relative;
+		
+		
+	}
+	@keyframes shadow{
+		0%{transform: scale(1);}
+		50%{transform: scale(1.2);}
+		100%{transform: scale(1);}
+
+	}
+	@keyframes zhuanShow{
+		0%{transform: translateY(0) rotate(0deg) ;}
+		25%{transform: translateY(10px) rotate(22.5deg) ;}
+		50%{  transform:translateY(30px) rotate(45deg) scale(1.1,0.9) ; border-bottom-right-radius:50px;}
+		75%{transform: translateY(10px) rotate(67.5deg) ;}
+		100%{transform:translateY(0) rotate(90deg) ;}
+
+	}
+	.zhi:after{
+		content: "";
+		height: 8px;
+		width: 50px;
+		background-color: #000;
+		opacity: 0.2;
+		position: absolute;
+		border-radius: 50%;
+		top:100px;
+		animation: shadow 0.5s infinite linear;
+	}
+	.zhi:before{
+		content: "";
+		height: 50px;
+		width: 50px;
+		background-color: #fff;
+		opacity: 0.9;
+		position: absolute;
+		border-radius: 5px;
+		top:20px;
+		animation: zhuanShow 0.5s infinite linear;
+	}
+	</style>
+</head>
+<body>
+	<h1>三角形</h1>
+	<div class="sanjiaoxing1 sanjiaoxing"></div>
+	<div class="sanjiaoxing2 sanjiaoxing"></div>
+	<div class="sanjiaoxing3 sanjiaoxing"></div>
+	<div class="sanjiaoxing4 sanjiaoxing"></div>
+
+	<h1>tooltips</h1>
+	<div class="tooltips tooltips1" data-tip="第一个标签">鼠标悬浮查看</div>
+	<div class="tooltips tooltips2" data-tip="第二个标签">鼠标悬浮查看</div>
+
+	<div class="music">
+		<h1 style="color:#fff;">字符动画</h1>
+		<ul class="music-ul">
+			<li>hello<div class="line"></div></li>
+			<li>world<div class="line"></div></li>
+			<li>emmmmmm<div class="line"></div></li>
+			<li>beautiful<div class="line"></div></li>
+		</ul>
+	</div>
+	<h1>太极</h1>
+	<div class="taiji">
+
+		<div class="left"></div>
+		<div class="right"></div>
+	</div>
+	<div class="sky">
+		<h1>白云飘</h1>
+		<div class="caodi"></div>
+		<div class="cloud">
+			<div class="cloud-1"></div>
+			<div class="cloud-2"></div>
+		</div>
+		<div class="cloud cloudA">
+			<div class="cloud-1"></div>
+			<div class="cloud-2"></div>
+		</div>
+	</div>
+	<H1>跳动的纸片</H1>
+	<div class="tiao">
+		<div class="zhi"></div>
+		
+	</div>
+
+</body>
+</body>
+</html>

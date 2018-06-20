@@ -294,6 +294,24 @@
 		top:20px;
 		animation: zhuanShow 0.5s infinite linear;
 	}
+	.card{position: relative;margin: 10px;display: inline-block;}
+	.card2{margin-left: 250px;}
+	.card-font,.card-back{
+		position: absolute;
+		top:0;left: 0;
+		height: 500px;
+		width: 250px;
+		backface-visibility: hidden;/*背面翻转*/
+		transition: all 1s;
+	} 
+	.card-font{transform: rotateY(0deg);}
+	.card-back{transform: rotateY(180deg);}
+	.card:hover .card-font{
+		transform: rotateY(180deg);
+	}
+	.card:hover .card-back{
+		transform: rotateY(0deg);
+	}
 	</style>
 </head>
 <body>
@@ -337,9 +355,15 @@
 	<H1>跳动的纸片</H1>
 	<div class="tiao">
 		<div class="zhi"></div>
-		
 	</div>
-
-</body>
+	<h1>图片翻转</h1>
+	<div class="card">
+		<img src="1.jpg" class="card-font">
+		<img src="2.jpg" class="card-back">
+	</div>
+	<div class="card card2">
+		<img src="3.jpg" class="card-font">
+		<img src="4.jpg" class="card-back">
+	</div>
 </body>
 </html>

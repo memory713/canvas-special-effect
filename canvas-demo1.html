@@ -51,30 +51,51 @@
 </div>
 <hr >
 <div style="display: flex;">
-	<div>
-		<h1 >非零环绕规则</h1>
-		<canvas width="400" height="300" id="canvas3"></canvas>
-	</div>
-	<div>
-		<h1>渐变</h1>
-		<canvas height="200" width="400" id="canvas4" style="margin-top:100px;"></canvas>
-	</div>
-	<ol style="display: inline-block;margin-top:100px;">画笔属性
+	<ol style="">画笔属性
 		<li>lineWidth:线宽，默认1px  若想细且清晰 +-0.5</li>
 		<li>lineCap:线末端类型  butt默认、round、square</li>
 		<li>lineJoin:相交线的拐点  miter默认、round、bevel</li>
+		<li>miterLimit:默认为10，只有在lineJoin为miter时有效果，表示尖角的长度（简单理解），在需要特别显示出尖角的时候适用</li>
 		<li>strokeStyle:线的颜色</li>
 		<li>fillStyle:填充颜色</li>
 		<li>setLineDash:设置虚线 setLineDash([5,10,15])虚实交替
 		</li>
 		<li>getDashOffset:设置虚线偏移量（负值向右）getDashOffset=-20</li>
 	</ol>
+	<canvas height="200" width="400" id="canvas4" style="margin-top:100px;"></canvas>
+	<div>
+		<h1 >非零环绕规则</h1>
+		<canvas width="400" height="300" id="canvas3"></canvas>
+	</div>
+</div>
+<h1>渐变</h1>
+<div style="display: flex;justify-content: space-around;">
+	<ol style="width: 25%;">线性渐变
+		<li>step1:var grd = context.createLinearGradient( xstart,ystart,xend,yend )</li>
+		<li>step2:grd.addColorStop(stop,color)</li>
+	</ol>
+	<ol style="width: 25%;">径向渐变
+		<li>step1:var grd = context.createRadialGradient( x0,y0,r0,x1,y1,r1 )</li>
+		<li>step2:grd.addColorStop(stop,color)</li>
+	</ol>
+	<ol style="width: 25%;">图片填充背景
+		<li>context.createPattern( img/canvas/video,repeat-style )</li>
+		<li>repeat-style:no-repeat/repeat-x/repeat-y/repeat</li>
+	</ol>
+	<ol style="width: 25%;">fillStyle赋值场景(strokeStyle)
+		<li>color （颜色作为背景色）</li>
+		<li>gradient (渐变)</li>
+		<li>img</li>
+		<li>canvas （其他动画作为背景色）</li>
+		<li>video</li>
+	</ol>
+	
+</div>
+<div style="display: flex;">	
+	<canvas id="canvas6" width="400" height="400"></canvas>
+	<canvas id="canvas10" width="400" height="400"></canvas>
 </div>
 <br>
-
-<h1>网格</h1>
-<canvas height="600" width="600" id="canvas5" style="border:1px solid #808080;"></canvas>
-<canvas id="canvas6" width="600" height="200"></canvas>
 <div style="display: flex;">
 	<ol>绘制矩形
 		<li>rect(x,y,w,h)无独立路经</li>
@@ -84,6 +105,7 @@
 	</ol>
 	<ol>绘制圆弧
 		<li>arc( centerx,centery,radius,startingAngle,endingAngle,anticlockwise=false)</li>
+		<li>arcTo( x1,y1,x2,y2,radius)</li>
 		<!-- 最后参数可选  顺时针或者逆时针 -->
 		<li>strokeRect(x,y,w,h)有独立路经，不影响别的绘制</li>
 		<li>fillRect(x,y,w,h)有独立路经，不影响别的绘制</li>
@@ -91,11 +113,48 @@
 	</ol>
 	
 </div>
-<h1>七巧板</h1>
-<canvas id="canvas7" width="800" height="800"></canvas>
-<h1>圆弧</h1>
-<canvas id="canvas8" width="1000" height="600" style="border:1px solid #000;"></canvas>
-	
+
+<div style="display: flex;">
+<div><h1>七巧板</h1>
+	<canvas id="canvas7" width="800" height="800" style="margin:0 auto"></canvas>
+</div>
+
+</div>
+
+<div style="display: flex;">
+	<div>
+		<h1>圆弧</h1>
+		<canvas id="canvas8" width="600" height="350" style="border:1px solid #000;"></canvas>
+	</div>
+	<div>
+		<h1>圆角矩形</h1>
+		<canvas id="canvas11" width="600" height="350" style="border:1px solid #000;margin-left: 20px;"></canvas>
+	</div>
+</div>
+
+
+
+<h1>canvas 图形变换</h1>
+<div style="display: flex;">
+	<ol>图形变换
+		<li>translate(x,y)位移</li>
+		<li>rotate(deg)旋转</li>
+		<li>scale(sx,sy)缩放</li>
+	</ol>
+	<ol>应用函数
+		<li>cxt.save() 保存图形当前节点</li>
+		<li>cxt.restore() 返回图形之前保存的节点状态 与save成对出现 防止图形变换状态叠加</li>	
+	</ol>
+</div>
+<h1>五角星</h1>
+<div style="display: flex;">
+	<img src="images/time2.png" >	
+</div>
+<div style="display: flex;">
+	<canvas id="canvas9"  style="border:1px solid #000;margin:0 auto;"></canvas>
+</div>
+	<div><h1>网格</h1>
+<div style="display: flex;"><canvas height="600" width="600" id="canvas5" style="border:1px solid #808080;margin:0 auto;"></canvas></div></div>
 </body>
 <script type="text/javascript" src="js/canvas.js"></script>
 <script type="text/javascript">

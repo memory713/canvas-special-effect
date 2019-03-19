@@ -1,10 +1,14 @@
 window.onload=function(){
 var myCanvas = document.getElementById("canvas0")
 var ctx = myCanvas.getContext("2d")
+/*hsla(Hue,Saturation,Lightness,alpha)
+色调、饱和度、亮度、透明度*/
 // 画布填充颜色
 ctx.fillStyle="#ADCBF0"
 // 绘制一个填充的长方形  x y 宽 高
 ctx.fillRect(0,0,1000,2000);
+// 绘制一个矩形的边框  x y 宽 高
+/*ctx.strokeRect(0,0,1000,2000);*/
 
 ctx.beginPath();//划线开始
 ctx.moveTo(20,30);//画线开始的坐标
@@ -244,43 +248,39 @@ ctx.stroke();//执行 描边
 
 	// canvas6
 	var ctx6 = document.getElementById('canvas6').getContext('2d')
-	var linearGradient = ctx6.createLinearGradient(100,100,500,100)
-	linearGradient.addColorStop(0,'pink');
-	linearGradient.addColorStop(0.5,'red');
-	linearGradient.addColorStop(1,'blue');
+	var linearGradient = ctx6.createLinearGradient(0,0,300,300)
+	linearGradient.addColorStop(0,'white');
+	linearGradient.addColorStop(0.25,'yellow');
+	linearGradient.addColorStop(0.5,'green');
+	linearGradient.addColorStop(0.75,'blue');
+	linearGradient.addColorStop(1,'black');
 
 	ctx6.fillStyle = linearGradient;
 
-	ctx6.fillRect(10,10,500,100)
-	// pink ---->blue
+	ctx6.fillRect(0,0,300,300)
+
+	// white ---->black
 	
+	// canvas10
+	var ctx10 = document.getElementById('canvas10').getContext('2d')
+	var linearGradient2 = ctx10.createRadialGradient(150,150,50,150,150,250)
+	linearGradient2.addColorStop(0,'white');
+	linearGradient2.addColorStop(0.25,'yellow');
+	linearGradient2.addColorStop(0.5,'green');
+	linearGradient2.addColorStop(0.75,'blue');
+	linearGradient2.addColorStop(1,'black');
+
+	ctx10.fillStyle = linearGradient2;
+
+	ctx10.fillRect(0,0,300,300)
+
 	/*canvas7*/
-	var tangram = [
-		{p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:'#caff67'},
-		{p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:'#67becf'},
-		{p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:'#ef3d61'},
-		{p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color:'#f9f51a'},
-		{p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:'#a594c0'},
-		{p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:'#fa8ecc'},
-		{p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:'#f6ca29'},
-	]
+	
 	var ctx7 = document.getElementById('canvas7').getContext('2d');
 	for (var i = 0; i < tangram.length; i++) {
 		draw2(tangram[i],ctx7)
 	}
-	function draw2(piece,cxt){
-		cxt.beginPath();
-		cxt.moveTo(piece.p[0].x,piece.p[0].y)
-		for (var i = 0; i < piece.p.length; i++) {
-			cxt.lineTo(piece.p[i].x,piece.p[i].y)
-		}
-		cxt.closePath();
-		cxt.fillStyle=piece.color;
-		cxt.fill()
-		cxt.strokeStyle="black";
-		cxt.lineWidth = 3;
-		cxt.stroke()//执行
-	}
+	
 
 	/*canvas8*/
 	var ctx8 = document.getElementById('canvas8').getContext('2d');
@@ -288,33 +288,167 @@ ctx.stroke();//执行 描边
 	ctx8.strokeStyle = '#005588'
 	for (var i = 0; i < 10; i++) {
 		ctx8.beginPath()
-		ctx8.arc(50+i*100,60,40,0,2*Math.PI*(i+1)/10)
+		ctx8.arc(25+i*60,60,20,0,2*Math.PI*(i+1)/10)
 		ctx8.closePath()
 		ctx8.stroke()
 	}
 	for (var i = 0; i < 10; i++) {
 		ctx8.beginPath()
-		ctx8.arc(50+i*100,180,40,0,2*Math.PI*(i+1)/10)
-		
+		ctx8.arc(25+i*60,120,20,0,2*Math.PI*(i+1)/10)
 		ctx8.stroke()
 	}
 	for (var i = 0; i < 10; i++) {
 		ctx8.beginPath()
-		ctx8.arc(50+i*100,300,40,0,2*Math.PI*(i+1)/10,true)
+		ctx8.arc(25+i*60,180,20,0,2*Math.PI*(i+1)/10,true)
 		ctx8.closePath()
 		ctx8.stroke()
 	}
 	for (var i = 0; i < 10; i++) {
 		ctx8.beginPath()
-		ctx8.arc(50+i*100,420,40,0,2*Math.PI*(i+1)/10,true)
+		ctx8.arc(25+i*60,240,20,0,2*Math.PI*(i+1)/10,true)
 		ctx8.stroke()
 	}
 	ctx8.fillStyle='#005588'
 	for (var i = 0; i < 10; i++) {
 		ctx8.beginPath()
-		ctx8.arc(50+i*100,540,40,0,2*Math.PI*(i+1)/10,true)
+		ctx8.arc(25+i*60,300,20,0,2*Math.PI*(i+1)/10,true)
 		ctx8.closePath()
 		ctx8.fill()
 	}	
-	
+
+	/*canvas9*/
+	var canvas9 = document.getElementById('canvas9');
+	canvas9.width=1200;
+	canvas9.height= 800;
+	var ctx9 = canvas9.getContext('2d');
+
+	// 采用渐变色背景
+	var skyStyle = ctx6.createLinearGradient(0,0,0,canvas9.height );
+	skyStyle.addColorStop(0,'black');
+	skyStyle.addColorStop(1.0,'#035');
+	ctx9.fillStyle = skyStyle;
+
+	ctx9.fillRect(0,0,canvas9.width,canvas9.height);
+	for (var i = 0; i < 200; i++) {
+		var r = Math.random()*5+5;
+		var x = Math.random()*canvas9.width;
+		var y = Math.random()*canvas9.height*0.65;
+		var a = Math.random()*360;
+		drowStar(ctx9,x,y,r,a);
+
+	}
+	// 11
+	var canvas11 = document.getElementById('canvas11');
+	canvas11.width=540;
+	canvas11.height=540;
+	var ctx11 = canvas11.getContext('2d')
+	//drawRoundRect(ctx11,50,25,500,300,50)
+	fillRoundRect(ctx11,20,20,500,500,10,'#bbada0');
+	for (var i = 0; i < 4; i++) {
+		for (var j = 0; j < 4; j++) {
+			fillRoundRect(ctx11,40+i*120,40+j*120,100,100,6,'#ccc0b3');
+		}
+	}
+
+}
+// 七巧板参数
+var tangram = [
+	{p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:'#caff67'},
+	{p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:'#67becf'},
+	{p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:'#ef3d61'},
+	{p:[{x:600,y:200},{x:600,y:600},{x:400,y:400}],color:'#f9f51a'},
+	{p:[{x:400,y:400},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:'#a594c0'},
+	{p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:'#fa8ecc'},
+	{p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:'#f6ca29'},
+]
+// 划线七巧板
+function draw2(piece,cxt){
+	cxt.beginPath();
+	cxt.moveTo(piece.p[0].x,piece.p[0].y)
+	for (var i = 0; i < piece.p.length; i++) {
+		cxt.lineTo(piece.p[i].x,piece.p[i].y)
+	}
+	cxt.closePath();
+	cxt.fillStyle=piece.color;
+	cxt.fill()
+	cxt.strokeStyle="black";
+	cxt.lineWidth = 3;
+	cxt.stroke()//执行
+}
+/*r小半径 R大半径 x y 偏移量 rot旋转角度*/
+function drowStar(cxt,x,y,R,rot){
+	cxt.save();
+
+	cxt.translate(x,y);
+	cxt.rotate(rot/180*Math.PI);
+	cxt.scale(R,R);
+
+	starPath(cxt);
+	/*绘制出在 (x,y) 大小为R，旋转为rot的五角星*/
+	cxt.fillStyle='#fb3';
+	// cxt.strokeStyle='#fb5';
+	// cxt.lineWidth = 3;
+	// cxt.lineJoin = 'round';
+
+	cxt.fill();//填充
+	//cxt.stroke();//描边
+	cxt.restore()
+}
+// 五角星
+function starPath(cxt){
+	cxt.beginPath();
+	/*循环五次*/
+	for (var i = 0; i < 5; i++) {
+		cxt.lineTo(Math.cos((18+i*72)/180 * Math.PI), -Math.sin((18+i*72)/180 * Math.PI));
+		cxt.lineTo(Math.cos((54+i*72)/180 * Math.PI)*0.5, -Math.sin((54+i*72)/180 * Math.PI)*0.5);
+	} 
+	cxt.closePath();
+}
+
+
+
+function fillRoundRect( cxt,x,y,width,height,radius,/*option*/fillColor ){
+	if (2*radius > width || 2*radius > height) {
+		return;
+	}
+	cxt.save();
+	cxt.translate(x,y);
+	pathRoundRect(cxt,width,height,radius);
+	cxt.fillStyle = fillColor||"black";
+	cxt.fill();
+	cxt.restore();		
+}
+function strokeRoundRect( cxt,x,y,width,height,radius,/*option*/lineWidth,/*option*/strokeColor ){
+	if (2*radius > width || 2*radius > height) {
+		return;
+	}
+	cxt.save();
+	cxt.translate(x,y);
+	pathRoundRect(cxt,width,height,radius);
+	cxt.lineWidth = lineWidth||1;
+	cxt.strokeStyle = strokeColor||"black";
+	cxt.stroke();
+	cxt.restore();		
+}
+/*绘制矩形*/
+function drawRoundRect( cxt,x,y,width,height,radius ){
+	cxt.save();
+	cxt.translate(x,y);
+	pathRoundRect(cxt,width,height,radius);
+	cxt.strokeStyle="black";
+	cxt.stroke();
+	cxt.restore();		
+}
+function pathRoundRect(cxt,width,height,radius){
+	cxt.beginPath();
+
+	cxt.arc(width-radius,height-radius,radius,0,Math.PI/2);
+	cxt.lineTo(radius,height);
+	cxt.arc(radius,height-radius,radius,Math.PI/2,Math.PI);
+	cxt.lineTo(0,radius);
+	cxt.arc(radius,radius,radius,Math.PI,Math.PI*3/2);
+	cxt.lineTo(width-radius,0);
+	cxt.arc(width-radius,radius,radius,Math.PI*3/2,Math.PI*2);
+
+	cxt.closePath();
 }

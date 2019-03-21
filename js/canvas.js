@@ -1,3 +1,5 @@
+var searchLight = {x:100,y:100,radius:80,vx:Math.random()*5+10,vy:Math.random()*5+10};
+var rot = 0;
 window.onload=function(){
 var myCanvas = document.getElementById("canvas0")
 var ctx = myCanvas.getContext("2d")
@@ -92,22 +94,24 @@ ctx.stroke();//执行 描边
 
 	// 第三个图形
 	var canvas3 = document.getElementById('canvas3')
-	ctx3 = canvas3.getContext('2d')
-	// 大
-	ctx3.moveTo(100,100);
-	ctx3.lineTo(300,100);
-	ctx3.lineTo(300,300);
-	ctx3.lineTo(100,300);
+	canvas3.width = 600;
+	canvas3.height = 600;
+	ctx3 = canvas3.getContext('2d');
+
+	ctx3.beginPath();
+	ctx3.rect(0,0,600,600);
+	pathRect(ctx3, 50,50,500,150);
+	pathTriangle(ctx3, 200,250,50,500,350,500);
+	ctx3.arc(450,400,100,0,Math.PI*2,true)/*true 顺时针/逆时针*/
 	ctx3.closePath();
-// 小  
-	ctx3.moveTo(150,150);
-	ctx3.lineTo(150,250);
-	ctx3.lineTo(250,250);
-	ctx3.lineTo(250,150);
-	ctx3.closePath();
-	// 非零环绕规则：看某区域是否被填充  从该区域拉一条直线  看直线与线相交的轨迹  若为顺时针 +1 反则-1  相加得到总和  0不填充  非零填充
+	
+	ctx3.fillStyle = '#058';
+	ctx3.shadowColor = 'gray';
+	ctx3.shadowOffsetX = 10;
+	ctx3.shadowOffsetY = 10;
+	ctx3.shadowBlur = 10;
 	ctx3.fill()
-	ctx3.stroke()
+
 
 	// 4
 	var canvas4 = document.getElementById('canvas4')
@@ -335,8 +339,11 @@ ctx.stroke();//执行 描边
 		var y = Math.random()*canvas9.height*0.65;
 		var a = Math.random()*360;
 		drowStar(ctx9,x,y,r,a);
-
 	}
+	// 添加一个月亮
+	fillMoon(ctx9,2,900,100,80,30);
+	// 添加一片绿地
+	drawLand(ctx9);
 	// 11
 	var canvas11 = document.getElementById('canvas11');
 	canvas11.width=540;
@@ -349,7 +356,57 @@ ctx.stroke();//执行 描边
 			fillRoundRect(ctx11,40+i*120,40+j*120,100,100,6,'#ccc0b3');
 		}
 	}
+	// 12
+	var canvas12 = document.getElementById('canvas12');
+	canvas12.width=800;
+	canvas12.height=800;
+	var ctx12 = canvas12.getContext('2d');
 
+	ctx12.font = 'bold 40px Arial';
+	/*one*/
+	ctx12.fillStyle = '#058';
+	ctx12.fillText('这片村头最酷的崽！',40,100);
+
+	/*two*/
+	ctx12.lineWidth = 1;
+	ctx12.strokeStyle = '#058';
+	ctx12.strokeText('这片村头最酷的崽！',40,200);
+
+	/*three*/
+	ctx12.fillText('这片村头最酷的崽！',40,300,100);
+	ctx12.strokeText('这片村头最酷的崽！',40,400,100);
+
+	/*four*/
+	var linearGradient = ctx12.createLinearGradient(0,0,800,0)
+	linearGradient.addColorStop(0,'white');
+	linearGradient.addColorStop(0.25,'yellow');
+	linearGradient.addColorStop(0.5,'green');
+	linearGradient.addColorStop(0.75,'blue');
+	linearGradient.addColorStop(1,'black');
+
+	ctx12.fillStyle = linearGradient;
+	ctx12.fillText('这片村头最酷的崽！',40,500);
+
+	/*five*/
+	var backgroundImage = new Image();
+	backgroundImage.src = 'images/3.jpg';
+	backgroundImage.onload = function(){
+		var pattern = ctx12.createPattern(backgroundImage,"repeat");
+		ctx12.fillStyle = pattern;
+		ctx12.font = 'bold 100px Arial';
+		ctx12.fillText('Canvas！',40,600);
+		//ctx12.strokeText('Canvas！',40,600);
+	}
+
+	/*13*/
+	var canvas13 = document.getElementById('canvas13');
+	canvas13.width=500;
+	canvas13.height=500;
+	var ctx13 = canvas13.getContext('2d');
+	setInterval(function(){
+		drawLight(ctx13);
+		update(canvas13.width,canvas13.height);
+	},40)
 }
 // 七巧板参数
 var tangram = [
@@ -451,4 +508,113 @@ function pathRoundRect(cxt,width,height,radius){
 	cxt.arc(width-radius,radius,radius,Math.PI*3/2,Math.PI*2);
 
 	cxt.closePath();
+}
+/*绘制弯月*/
+function fillMoon(cxt,d,x,y,R,rot,/*optional*/fillColor){
+	cxt.save();
+	cxt.translate(x,y);
+	cxt.rotate(rot*Math.PI/180);
+	cxt.scale(R,R);
+	PathMoon(cxt,d);
+	cxt.fillStyle = fillColor||'#fd5';
+	cxt.fill();
+	cxt.restore();
+}
+function PathMoon(cxt,d){
+	cxt.beginPath();
+	cxt.arc(0,0,1,0.5*Math.PI,1.5*Math.PI,true);
+	cxt.moveTo(0,-1);
+	cxt.arcTo(d,0,0,1,dis(0,-1,d,0)/d);
+	cxt.closePath();
+}
+/*坐标距离公式*/
+function dis(x1,y1,x2,y2){
+	return Math.sqrt( (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2) );
+}
+/*绘制绿地*/
+function drawLand(cxt){
+	cxt.save();
+	cxt.beginPath();
+	cxt.moveTo(0,600);
+	cxt.bezierCurveTo(540,400,660,800,1200,600);
+	cxt.lineTo(1200,800);
+	cxt.lineTo(0,800);
+	cxt.closePath();
+
+	var landStyle = cxt.createLinearGradient(0,800,0,0);
+	landStyle.addColorStop(0.0,'#030');
+	landStyle.addColorStop(1.0,'#580');
+	cxt.fillStyle = landStyle;
+	cxt.fill();
+	cxt.restore();
+}
+function drawLight(cxt){
+	var canvas = cxt.canvas;
+	cxt.clearRect(0,0,canvas.width,canvas.height);
+	cxt.save();
+
+	cxt.beginPath();
+	cxt.fillStyle = 'black';
+	cxt.fillRect(0,0,canvas.width,canvas.height);
+
+	cxt.save();
+	cxt.translate(searchLight.x,searchLight.y);
+	cxt.rotate(rot/180*Math.PI);
+	cxt.scale(searchLight.radius,searchLight.radius)
+	starPath(cxt);
+	/*cxt.arc(searchLight.x,searchLight.y,searchLight.radius,0,Math.PI*2);*/
+	cxt.fillStyle = '#fff';
+	cxt.fill();
+	cxt.restore();
+	cxt.clip();
+
+	cxt.font = 'bold 150px Arial';
+	cxt.textAlign = 'center';
+	cxt.textBaseline = 'middle';
+	cxt.fillStyle = '#058';
+	cxt.fillText('CANVAS!',canvas.width/2,canvas.height/4);
+	cxt.fillText('CANVAS!',canvas.width/2,canvas.height/2);
+	cxt.fillText('CANVAS!',canvas.width/2,canvas.height*3/4);
+
+	cxt.restore();
+}
+function update(w,h){
+	rot += 1;
+	searchLight.x += searchLight.vx;
+	searchLight.y += searchLight.vy;
+
+	if (searchLight.x - searchLight.radius <= 0 ) {
+		searchLight.vx = -searchLight.vx;
+		searchLight.x = searchLight.radius;
+	}
+
+	if (searchLight.x + searchLight.radius >= w ) {
+		searchLight.vx = -searchLight.vx;
+		searchLight.x = w- searchLight.radius;
+	}
+
+	if (searchLight.y - searchLight.radius <= 0 ) {
+		searchLight.vy = -searchLight.vy;
+		searchLight.y = searchLight.radius;
+	}
+
+	if (searchLight.y + searchLight.radius >= h ) {
+		searchLight.vy = -searchLight.vy;
+		searchLight.y = h- searchLight.radius;
+	}
+	
+}
+/*矩形 三角形*/
+function pathRect(ctx,x,y,w,h){
+	ctx.moveTo(x,y);
+	ctx.lineTo(x,y+h);
+	ctx.lineTo(x+w,y+h);
+	ctx.lineTo(x+w,y);
+	ctx.lineTo(x,y);
+}
+function pathTriangle(ctx,x1,y1,x2,y2,x3,y3){
+	ctx.moveTo(x1,y1);
+	ctx.lineTo(x2,y2);
+	ctx.lineTo(x3,y3);
+	ctx.lineTo(x1,y1); 
 }

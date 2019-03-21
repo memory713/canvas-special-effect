@@ -63,10 +63,6 @@
 		<li>getDashOffset:设置虚线偏移量（负值向右）getDashOffset=-20</li>
 	</ol>
 	<canvas height="200" width="400" id="canvas4" style="margin-top:100px;"></canvas>
-	<div>
-		<h1 >非零环绕规则</h1>
-		<canvas width="400" height="300" id="canvas3"></canvas>
-	</div>
 </div>
 <h1>渐变</h1>
 <div style="display: flex;justify-content: space-around;">
@@ -97,19 +93,30 @@
 </div>
 <br>
 <div style="display: flex;">
-	<ol>绘制矩形
+	<ol style="width: 20%;">绘制矩形
 		<li>rect(x,y,w,h)无独立路经</li>
 		<li>strokeRect(x,y,w,h)有独立路经，不影响别的绘制</li>
 		<li>fillRect(x,y,w,h)有独立路经，不影响别的绘制</li>
 		<li>clearRect(x,y,w,h)擦除矩形区域</li>
 	</ol>
-	<ol>绘制圆弧
-		<li>arc( centerx,centery,radius,startingAngle,endingAngle,anticlockwise=false)</li>
-		<li>arcTo( x1,y1,x2,y2,radius)</li>
+	<ol style="width: 30%;">绘制圆弧
+		<li>arc( centerx,centery,radius,startingAngle,<br>endingAngle,anticlockwise=false)</li>
 		<!-- 最后参数可选  顺时针或者逆时针 -->
 		<li>strokeRect(x,y,w,h)有独立路经，不影响别的绘制</li>
 		<li>fillRect(x,y,w,h)有独立路经，不影响别的绘制</li>
 		<li>clearRect(x,y,w,h)擦除矩形区域</li>
+		<li>arcTo( x1,y1,x2,y2,radius)</li>
+		<li>step1:moveTo(x0,y0)</li>
+	</ol>
+	<ol>贝塞尔曲线
+		<li>贝塞尔二次曲线：</li>
+		<li>step1:moveTo(x0,y0)</li>
+		<li>step2:quadraticCurveTo(x1,y1,x2,y2)</li>		
+		<li><a href="http://tinyurl.com/html5quadratic" target="blank">http://tinyurl.com/html5quadratic</a></li>
+		<li>贝塞尔三次曲线：</li>
+		<li>step1:moveTo(x0,y0)</li>
+		<li>step2:bezierCurveTo(x1,y1,x2,y2,x3,y3)</li>		
+		<li><a href="http://tinyurl.com/html5bezier" target="blank">http://tinyurl.com/html5bezier</a></li>
 	</ol>
 	
 </div>
@@ -131,30 +138,94 @@
 		<canvas id="canvas11" width="600" height="350" style="border:1px solid #000;margin-left: 20px;"></canvas>
 	</div>
 </div>
-
-
-
 <h1>canvas 图形变换</h1>
 <div style="display: flex;">
-	<ol>图形变换
+	<ol style="width: 20%;">图形变换
 		<li>translate(x,y)位移</li>
 		<li>rotate(deg)旋转</li>
 		<li>scale(sx,sy)缩放</li>
+		<li>transform(a,b,c,,d,e,f)</li>
 	</ol>
-	<ol>应用函数
+	<ol style="width: 20%;">应用函数
 		<li>cxt.save() 保存图形当前节点</li>
 		<li>cxt.restore() 返回图形之前保存的节点状态 与save成对出现 防止图形变换状态叠加</li>	
 	</ol>
+	<img src="images/time3.png" style="width: 30%;height: 200px;">
 </div>
 <h1>五角星</h1>
 <div style="display: flex;">
-	<img src="images/time2.png" >	
+	<img src="images/time2.png" style="width: 50%;">	
+	<img src="images/time4.png" style="width: 50%;">
 </div>
 <div style="display: flex;">
 	<canvas id="canvas9"  style="border:1px solid #000;margin:0 auto;"></canvas>
 </div>
-	<div><h1>网格</h1>
-<div style="display: flex;"><canvas height="600" width="600" id="canvas5" style="border:1px solid #808080;margin:0 auto;"></canvas></div></div>
+
+<h1>canvas 文字渲染</h1>
+<div style="display: flex;">
+	<ol style="width: 30%;">文字渲染基础
+		<li>context.font = 'bold 40px Arial' 默认值：20px sans-serif</li>
+		<li>context.fillText(string,x,y,[maxlen])</li>
+		<li>context.strokeText(string,x,y,[maxlen])</li>
+		<li>maxlen:绘制一行文字所可以占用的最长宽度，压缩程度</li>
+		<li>context.textAlign = left/center/right 文本水平对齐方式</li>
+		<li>context.textBaseline = top/middle/bottom 文本垂直对齐方式</li>
+		<li>context.measureText(string).width 文本的度量</li>
+	</ol>
+	<ol style="width: 40%;">font
+		<li>font:font-style,font-variant,font-weight,font-size,font-family</li>
+		<li>font-style:normal(default)/italic(斜体字)/oblique(倾斜字体)</li>
+		<li>font-variant:normal(default)/small-caps(小型大写字母)</li>
+		<li>font-weight:normal(default) 400/lighter/bold 700/bolder/100~900</li>
+		<li>font-size:20px(default)/2em/150%</li>
+		<li>font-family:支持@font-face</li>
+	</ol>
+</div>
+<div style="display: flex;">
+	<canvas  id="canvas12" style="border:1px solid #808080;margin:0 auto;"></canvas>
+</div>
+
+<div>
+	<h1>网格</h1>
+	<div style="display: flex;">
+		<canvas height="600" width="600" id="canvas5" style="border:1px solid #808080;margin:0 auto;"></canvas>
+	</div>
+</div>
+<h1>canvas补充</h1>
+<div style="display: flex;">
+	<ol style="width: 30%;">阴影：
+		<li>context.shadowColor = 'color'</li>
+		<li>context.shadowOffsetX = ''</li>
+		<li>context.shadowOffsetY = ''</li>
+		<li>context.shadowBlur = 1 模糊程度</li>
+	</ol>
+	<ol style="width: 30%;">other：
+		<li>context.globalAlpha = 1 (default)全局透明度</li>
+		<li>context.globalCompositeOperation = "source-over/destination-over......(canvas API)" (default)绘制的图形在重叠的时候的效果</li>
+		<li>context.isPointInPath(x,y) 坐标点是否在当前的路径内</li>
+		
+	</ol>
+	<ol style="width: 30%;">剪辑区域：
+		<li>context.clip()</li>
+		<li>非零环绕规则：<br>看某区域是否被填充  
+		<br>从该区域拉一条直线  <br>看直线与线相交的轨迹  <br>若为顺时针 +1 反则-1  <br>相加得到总和  <br>0不填充  非零填充</li>
+
+		
+	</ol>
+</div>
+
+<div style="display: flex;">
+	<div>
+		<h1>探照灯</h1>
+		<canvas  id="canvas13" style="border:1px solid #808080;margin:0 auto;"></canvas>
+	</div>
+	<div>
+		<h1 >非零环绕规则</h1>
+		<canvas width="400" height="300" id="canvas3"></canvas>
+	</div>
+</div>
+
+
 </body>
 <script type="text/javascript" src="js/canvas.js"></script>
 <script type="text/javascript">

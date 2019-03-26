@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简单滤镜处理</title>
+	<link rel="stylesheet" type="text/css" href="css/canvas_2.css">
+	<script type="text/javascript" src=""></script>
+	<style type="text/css">
+	body{padding:0;margin:0;}
+	.box{margin:0 auto;border:1px solid #eee;display: block;}
+	</style>
+</head>
+<body>
+<div style="display:flex">
+	<img src="images/part1.png" style="width: 30%;height: 350px;">
+	<img src="images/part2.png" style="width: 30%;height: 350px;">
+	<img src="images/part3.png" style="width: 30%;height: 350px;">
+	
+</div>
+<!-- canvas1 -->
+<div style="background-color: #000;padding:50px 0;width: 100%;">
+	<canvas id="canvas0" class="box"></canvas>
+	<input type="range" name="" step="0.01" value='1' id="scale-range" min="0.5" max='3.0'  style="display: block;margin:20px auto;width:800px">
+	<canvas id="canvas1" class="box"></canvas>
+	<canvas id="offCanvas" style="display: none">
+    </canvas>
+</div>
+
+ <canvas id="canvas2" style="display:block;margin:0 auto;border:1px solid #aaa;">
+        您的浏览器尚不支持canvas
+    </canvas>
+
+</body>
+</html>
+<script type="text/javascript" src='js/canvas_2.js'></script>

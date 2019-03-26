@@ -21,7 +21,6 @@ Destructuring:ES6允许按照一定模式，从数组和对象中提取值，对
 	默认值生效的条件是，对象的属性值严格等于undefined。
  */
 
-
 new Promise(function (resolve, reject) {
     log('start new Promise...');
     var timeOut = Math.random() * 2;

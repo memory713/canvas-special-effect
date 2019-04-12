@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+</head>
+<body>
+<div id="app" style="">	
+	<div class="title"><div class="left"><</div>理财超市</div>
+	<!-- tab -->
+	<div class="tab">
+		<div class="tab-line flex">
+			<div v-for="item in tab1" class="tab-line1-box">{{item.name}}</div>
+		</div>
+		<div class="tab-line flex"></div>
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+  el: '#app',
+  data: {
+  	tab1:[{name:'全部',choose:true},{name:'活期',choose:true},{name:'定期+',choose:true},{name:'周期开放',choose:true},],
+  	mengShow:false
+  },
+  mounted(){
+  	//给body设置足够高的高度
+  	document.getElementsByTagName('body')[0].style.height = window.innerHeight+'px';
+  },
+  methods:{
+  	dianji(){
+  		this.mengShow = true
+  		document.addEventListener("touchmove",mo,false);//禁止页面滑动
+  	},
+  	close(){
+  		this.mengShow = false
+  		document.removeEventListener("touchmove",mo,false);
+  	}
+  }
+})
+</script>

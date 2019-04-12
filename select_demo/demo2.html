@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+</head>
+<body>
+<div id="app" style="">
+	<!-- title -->
+	<div class="title"><a class="left" href="select-demo.html"><</a>票据好管家</div>
+	<!-- part1 -->
+	<div class="page-top">
+		<div class="card-all" style="background-color: #fff;padding:10px">
+				<!-- 卡片1 -->
+				<div class="card3" style="">
+					<div class="flex" style="margin-top:5px;">
+						<div class="card3-opacity">当前持有银票(元)</div>
+						<img src="img/eyes.png" class="card-top-img">
+					</div>
+					<div class="card3-money" >746,125,300.00</div>
+					<div class="flex">
+						<div class="card3-bottom">
+							<div class="">12月开出银票(元)</div>
+							<div class="card3-bottom-word">12,811,990.00</div>
+						</div>
+						<div class="card3-bottom">
+							<div class="">12月开出银票(元)</div>
+							<div class="card3-bottom-word">23,640,990.00</div>
+						</div>
+					</div>
+					<div class="card-button2">票据查询</div>
+					<img src="img/card2.png" class="card1-bg2">
+				</div>
+			
+		</div>
+
+		<div class="box">
+			<div class="box-item" v-for="item in 8">
+				<div class="flex-center"><img src="img/jiqi.png" class="item-img"></div>
+				<div>即期</div>
+			</div>
+		</div>
+		
+	</div>
+	<!-- tab -->
+	<div class="tab flex" >
+		<div class="tab-item checked">银行承兑汇票</div>
+		<div class="tab-item ">商业承兑汇票</div>
+	</div>
+
+	<!-- list -->
+	<div class="page2-list-top flex-between">
+		<div class="page2-top-left">收款人签收</div>
+		<div class="page2-top-right">查看全部(8) > </div>
+	</div>
+	<div style="padding-left: 10px;background-color: #fff;">
+		<div class="page2-list flex-between" v-for="item in 4">
+			<div style="width: 75%;">
+				<div class="flex">
+					<span class="page2-color1">金额 </span>
+					<span class="page2-color2">48,294,672.00 元</span>
+				</div>
+				<div class="flex">
+					<span class="page2-color1">票号 </span>
+					<span class="page2-color3">648269704060900583723233494223</span>
+				</div>
+			</div>
+			<div  class="page2-list-buttom">签收</div>
+		</div>
+	</div>
+
+	<div class="page2-list-top flex-between" style="margin-top:10px;">
+		<div class="page2-top-left">背书转让签收</div>
+		<div class="page2-top-right">查看全部(6) > </div>
+	</div>
+	<div style="padding-left: 10px;background-color: #fff;">
+		<div class="page2-list flex-between" v-for="item in 4">
+			<div style="width: 75%;">
+				<div class="flex">
+					<span class="page2-color1">金额 </span>
+					<span class="page2-color2">48,294,672.00 元</span>
+				</div>
+				<div class="flex">
+					<span class="page2-color1">票号 </span>
+					<span class="page2-color3">648269704060900583723233494223</span>
+				</div>
+			</div>
+			<div  class="page2-list-buttom">签收</div>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>
+<script type="text/javascript" src="vue.js"></script>
+<script type="text/javascript">
+	var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+</script>

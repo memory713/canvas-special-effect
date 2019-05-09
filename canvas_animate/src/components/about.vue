@@ -6,6 +6,8 @@
       <div>about</div>
       <router-link to="/" class="right">></router-link>
     </div>
+    <div>地图组建</div>
+    <div id="allmap" style="width:100%;height:400px;"></div>
     <h1>一、定位position和浮动</h1>
     <div>
       <img src="../assets/1.jpg" style="width:100%;">
@@ -144,7 +146,26 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point = new BMap.Point(121.36835, 31.141154);
+    var marker = new BMap.Marker(point); // 创建标注
+    map.addOverlay(marker); // 将标注添加到地图中
+    map.centerAndZoom(point, 15);
+    var opts = {
+      width: 200, // 信息窗口宽度
+      height: 50, // 信息窗口高度
+      title: "上海霍卫工艺设备有限公司" // 信息窗口标题
+    };
+    var infoWindow = new BMap.InfoWindow(
+      "地址：上海市闵行区七莘路1839号北楼1202室",
+      opts
+    ); // 创建信息窗口对象
+
+    map.openInfoWindow(infoWindow, point); //开启信息窗口
+    map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+  },
   methods: {
     route_goto() {}
   }

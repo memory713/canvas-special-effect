@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>名片</title>
+</head>
+<style>
+  #canvas_demo {
+    border: 1px solid #EEF0FF;
+    margin: 0 auto;
+  }
+</style>
+
+<body>
+  <canvas id="canvas_demo"></canvas>
+</body>
+<script>
+  var context = document.getElementById("canvas_demo").getContext("2d");
+  // 设置字体
+  context.font = "18px bold 黑体";
+  // 设置颜色
+  context.fillStyle = "#ff0";
+  // 设置水平对齐方式
+  context.textAlign = "center";
+  // 设置垂直对齐方式
+  context.textBaseline = "middle";
+  // 绘制文字（参数：要写的字，x坐标，y坐标）
+  context.fillText("要写的文字", 100, 100);
+</script>
+
+</html>

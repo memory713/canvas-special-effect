@@ -20,7 +20,7 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/canvas/canvas0/index.vue'),
       meta: {
         // affix: true,
-        title: '简单介绍0',
+        title: 'helloworld',
       },
     },
     {
@@ -29,7 +29,7 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/canvas/canvas1/index.vue'),
       meta: {
         // affix: true,
-        title: '简单介绍1',
+        title: '矩形',
       },
     },
     {
@@ -37,7 +37,7 @@ const dashboard: AppRouteModule = {
       name: 'canvas2',
       component: () => import('/@/views/canvas/canvas2/index.vue'),
       meta: {
-        title: '简单介绍2',
+        title: '圆及圆弧',
       },
     },
     {
@@ -45,7 +45,7 @@ const dashboard: AppRouteModule = {
       name: 'canvas3',
       component: () => import('/@/views/canvas/canvas3/index.vue'),
       meta: {
-        title: '简单介绍3',
+        title: '渐变',
       },
     },
     {
@@ -53,7 +53,7 @@ const dashboard: AppRouteModule = {
       name: 'canvas4',
       component: () => import('/@/views/canvas/canvas4/index.vue'),
       meta: {
-        title: '简单介绍4',
+        title: '天空',
       },
     },
     {
